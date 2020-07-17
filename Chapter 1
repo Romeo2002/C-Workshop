@@ -1,0 +1,48 @@
+//The aim of the activity is to write a system that will ask users for their first name and age. Users will be placed into groups based on their age, and we'll use macros to define these age brackets.
+
+//The aim of the activity is to write a system that will ask users for their first name and age. Users will be placed into groups based on their age
+
+#include <iostream>
+#include <string>
+
+#define GROUP_1_THRESHOLD 23
+#define GROUP_2_THRESHOLD 40
+#define Group_1 "Group A"
+#define Group_2 "Group B"
+#define Group_3 "Group C"
+
+int Ages(void);
+void ShortAges(int age, std::string * Name);
+int main()
+{
+	std::string Name;
+	int Age;
+	std::cout << " Welcome to C++ Workshop!\n";
+	while (1) {
+		std::cout << "What's your name?\n";
+		getline(std::cin, Name);
+		Age = Ages();
+		ShortAges(Age, &Name);
+	}
+	return 0;
+}
+
+int Ages(void)  {
+	int age;
+	std::cout << "How old are you?\n";
+	std::cin >> age;
+	getchar();
+	return age;
+}
+
+void ShortAges(int age, std::string * Name) {
+	if (age < GROUP_1_THRESHOLD) {
+		std::cout << "Welcome " << *Name << " . You're in " << Group_1 << std::endl;
+	}
+	else if (age < GROUP_2_THRESHOLD) {
+		std::cout << "Welcome " << *Name << " . You're in " << Group_2 << std::endl;
+	}
+	else {
+		std::cout << "Welcome " << *Name << " . You're in " << Group_3 << std::endl;
+	}
+}
