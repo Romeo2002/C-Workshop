@@ -1,0 +1,51 @@
+//In this exercise, we're going to write a simple program that provides menu options for a food outlet. Users will be able to select multiple options from a menu, and we will present the price information based on that choice.
+
+
+
+#include <iostream>
+#include <string>
+#include <ctime>
+#include <cstdlib>
+
+int main(void) {
+	int MinNumber;
+	int MaxNumber;
+	int NumberOfTry;
+	int CorrectNumber;
+	int GuessNumber;
+	std::string input = "";
+	std::cout << "***Number Guesing Game***";
+	std::cout << "\nEnter the number of Try: ";
+	while (true) {
+		getline(std::cin, input);
+		NumberOfTry = std::stoi(input);
+		if (NumberOfTry == 0) {
+			std::cout << "\nGood bye!";
+			break;
+		}
+		std::cout << "\nEnter the Maximum Number: ";
+		getline(std::cin, input);
+		MaxNumber = std::stoi(input);
+		std::cout << "\nEnter the Mininum Number: ";
+		getline(std::cin, input);
+		MinNumber = std::stoi(input);
+		CorrectNumber = rand() % (MaxNumber - MinNumber) + MinNumber;
+		for (int i = 1; i < NumberOfTry; i++) {
+			std::cout << "\nEnter your guess: ";
+			getline(std::cin, input);
+			GuessNumber = std::stoi(input);
+			if (GuessNumber > CorrectNumber) {
+				std::cout << "\nYour guess was too high. you have " << (NumberOfTry - i) << "guesses remaining";
+			}
+			else if (GuessNumber < CorrectNumber) {
+				std::cout << "\nYour guess was too low. you have " << (NumberOfTry - i) << "guesses remaining";
+			}
+			else if (GuessNumber == CorrectNumber) {
+				std::cout << "\nWell done. You guessed the number!";
+				break;
+			}
+		}
+		std::cout << "\nEnter 0 to exit or Enter any number to play again: ";
+	}
+	return 0;
+}
