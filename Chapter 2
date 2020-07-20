@@ -13,10 +13,11 @@ int main(void) {
 	int NumberOfTry;
 	int CorrectNumber;
 	int GuessNumber;
+	bool isBool = true;
 	std::string input = "";
 	std::cout << "***Number Guesing Game***";
-	std::cout << "\nEnter the number of Try: ";
-	while (true) {
+	while (isBool) {
+		std::cout << "\nEnter the number of Try: ";
 		getline(std::cin, input);
 		NumberOfTry = std::stoi(input);
 		if (NumberOfTry == 0) {
@@ -46,6 +47,10 @@ int main(void) {
 			}
 		}
 		std::cout << "\nEnter 0 to exit or Enter any number to play again: ";
+		getline(std::cin, input);
+		if (std::stoi(input) == 0) {
+			isBool = false;
+		}
 	}
 	return 0;
 }
