@@ -1,0 +1,81 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+class Person {
+public:
+	std::string User;
+	int Age;
+};
+
+std::vector<Person> Record;
+
+int Getinput(void);
+void AddRecord();
+void FetchRecord(void);
+
+
+
+int main(void) {
+
+	bool isBool = true;
+	int InputResult;
+	std::cout << "****	Sign-Up Application	****\n";
+	while (isBool) {
+		InputResult = Getinput();
+		switch (InputResult)
+		{
+		case 1:
+			AddRecord();
+			break;
+		case 2:
+			try
+			{
+				FetchRecord();
+			}
+			catch (const std::exception& oor)
+			{
+				std::cout << "\nError: Invalid UserID.\n\n";
+				break;
+			}
+			
+			break;
+		case 3:
+			isBool = false;
+			break;
+		default:
+			break;
+		}
+	}
+	return 0;
+}
+
+int Getinput(void) {
+	std::string input;
+	std::cout << "Please select an option.\n" << "1. Add Record\n" << "2. Fetch Record\n" << "3. Quit\n" << std::endl << "Enter an option: ";
+	getline(std::cin, input);
+	return stoi(input);
+}
+
+void AddRecord(void) {
+	std::string Buffer;
+	Person NewRecord;
+	std::cout << "Add User. Please enter Username and Age\n";
+	std::cout << "Name: ";
+	getline(std::cin, NewRecord.User);
+	std::cout << "Age: ";
+	getline(std::cin, Buffer);
+	NewRecord.Age = stoi(Buffer);
+	Record.push_back(NewRecord);
+}
+
+void FetchRecord(void) {
+	int Index;
+	std::string Buffer;
+	std::cout << "Please enter an User ID: ";
+	getline(std::cin, Buffer);
+	Index = stoi(Buffer);
+	std::cout << "User ID: " << Index << std::endl;
+	std::cout << "User Name: " << Record.at(Index).User << std::endl;
+	std::cout << "Age: " << Record.at(Index).Age << std::endl;
+}
