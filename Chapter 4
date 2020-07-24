@@ -1,0 +1,49 @@
+//Fizz Buzz
+
+#include <iostream>
+#include <string>
+#define Fizz "Fizz"
+#define Buzz "Buzz"
+#define FizzBuzz "FizzBuzz"
+
+
+
+int main(void) {
+	int Counter;
+	bool isFizz = false;
+	bool isBuzz = false;
+	bool isFizzBuzz = false;
+
+	for (Counter = 1; Counter <= 100; Counter++) {
+		if ((Counter % 3) == 0) {
+			isFizz = true;
+		}
+		if ((Counter % 5) == 0) {
+			isBuzz = true;
+		}
+		if (isFizz && isBuzz) {
+			isFizzBuzz = true;
+		}
+		if (isFizzBuzz) {
+			std::cout << FizzBuzz << ", ";
+		} else if (isFizz) {
+			std::cout << Fizz << ", ";
+		}
+		else if (isBuzz) {
+			if (Counter == 100) {
+				std::cout << Buzz;
+			} else
+				std::cout << Buzz << ", ";
+		} else {
+			std::cout << Counter << ", ";
+		}
+		isFizz = false;
+		isBuzz = false;
+		isFizzBuzz = false;
+	}
+	getchar();
+	return 0;
+}
+
+
+
